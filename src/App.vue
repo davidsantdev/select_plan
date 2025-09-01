@@ -7,10 +7,10 @@ const mostrar3= ref (false)
 const mostrar4=ref (false)
 
 
-const bot2= ref(false)
+const bot2= ref(true)
 const bot3=ref (false)
-
-
+const bot4= ref (false)
+const bot5= ref (false)
 const custom= ref(false)
 
 const online= ref (false)
@@ -84,7 +84,8 @@ function prox() {
     number2.value=true
     number2Next.value=false
     bot2.value=false
-    bot3.value=true
+    bot3.value=false
+    disab.value=true
   }
 }
 
@@ -133,7 +134,7 @@ function back2 (){
 
 }
 
-const disab= ref (true)
+const disab= ref (false)
 
 
 
@@ -149,6 +150,9 @@ function prox2 (){
   number2Next.value=true
   number3.value=true
   number3Next.value=false
+  bot3.value=false
+  bot4.value=true
+
   
   
 }
@@ -219,15 +223,23 @@ function select (){
   if (disab.value=true){
   alert("Select a plan!")
 }
-
 }
 
+function prox4 (){
 
+  mostrar.value=false
+  mostrar2.value=false
+  mostrar3.value=false
+  number2.value=false
+  number1.value=false
+  number2Next.value=true
+  number3.value=true
+  number3Next.value=false
+  mostrar4.value=true
+  bot4.value=false
+  bot5.value=true
 
-
-
-
-
+}
 
 </script>
 
@@ -357,6 +369,7 @@ function select (){
           
           
       </section>
+      <div class="main" @click="oi"></div>
 
 
       <section v-show="mostrar3" class="main">
@@ -471,6 +484,8 @@ function select (){
       <button v-show="bot3" type="submit" @click="prox2" class="submit-step">Next Step</button>
 
       <button @click="select" v-show="disab"  class="submit-step" > Select a plan</button>
+      <button v-show="bot4" type="submit" @click="prox4" class="submit-step">Next Step</button>
+      <button v-show="bot5" type="submit" @click="confirm" class="submit-step">Confirm</button>
       
       
 
@@ -485,6 +500,9 @@ function select (){
 </template>
 
 <style >
+
+
+
 
 .precing{
   color:hsl(213, 96%, 18%);
@@ -546,7 +564,7 @@ body{
 .section-step{
   background-image: url(./assets/images/bg-sidebar-desktop.svg);
   background-repeat: no-repeat;
-  background-size: 200wh;
+  background-size: 3s00wh;
   margin-top: 10px;
   margin-left:10px;
 
@@ -555,14 +573,16 @@ body{
 
 .container-main{
 
-  width: 1500px;
+  width: 1200px;
   display: flex;
   height: 590px;
   background-color: white;
 
+  
+
 }
 .main{
-  margin-left:200px
+  margin-left:10%;
 }
 
 .container-itens{
@@ -631,13 +651,13 @@ input{
   padding: 13px;
   border: 0;
   border-radius: 10px;
-  width: 130px;
+  width: 150px;
   height: 50px;
-  margin-top: 30%;
+  margin-top: 40%;
   font-size: 15px;
   font-weight: 700;
   color: hsl(231, 100%, 99%);
-  margin-left: 10%;
+
   
 }
 .back{
@@ -722,6 +742,58 @@ input{
 .check{
   width: 20px;
   
+}
+
+@media (max-width:1300px){
+  body{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+    .container-main{
+      display: block;
+      width: 700px;
+      height: 700px;
+    }
+    .section-step{
+      width: 100%;
+      
+      background-image: url(./assets/images/bg-sidebar-mobile.svg);
+      background-size: 97%;
+    }
+    .text-step{
+      display: none;
+    }
+    .step1{
+      display: flex;
+      justify-content: space-between;
+    }
+    .container-steps{
+      display: flex;
+      justify-content: space-between;
+      margin: 30px;
+    }
+    input, form{
+      width: 70%;
+    }
+  }
+@media (max-width:800px){
+
+    
+  
+  .container-main{
+    width: 80%;
+    margin-left:auto;
+    margin-right: auto;
+    
+  }
+  .container-confirm{
+    width: 90%;
+  }
+  .main{
+    background-color: antiquewhite;
+    margin: 5px;
+  }
 }
 
 </style>
