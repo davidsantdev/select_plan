@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+const start= ref (true)
 
+const mostrarFinal= ref (false)
 const mostrar= ref(true)
 const mostrar2= ref(false)
 const mostrar3= ref (false)
@@ -21,11 +23,11 @@ const large= ref (false)
 
 const number1= ref(true)
 const number1Next= ref(false)
-
+const number4Next= ref(true)
 
 const number2= ref(false)
 const number2Next= ref (true)
-
+const number4= ref (false)
 
 
 const number3= ref (false)
@@ -233,20 +235,30 @@ function prox4 (){
   number2.value=false
   number1.value=false
   number2Next.value=true
-  number3.value=true
-  number3Next.value=false
+  number3.value=false
+  number3Next.value=true
   mostrar4.value=true
   bot4.value=false
   bot5.value=true
+  number4.value=true
+  number4Next.value=false
 
 }
+
+function confirm (){
+  mostrarFinal.value=true
+  start.value=false
+  mostrar4.value=false
+  bot5.value=false
+}
+
 
 </script>
 
 <template>
   
-    <div class="container-main">
-      <section class="section-step">
+    <div  class="container-main">
+      <section v-show="start" class="section-step">
       <div class="container-steps">
         <div class="step1">
           <div class="number"><i v-show="number1" class="bi bi-1-circle-fill"></i>
@@ -263,7 +275,7 @@ function prox4 (){
           </div>
           <div class="text-step">
             <p class="step-out">Step 2</p>
-            <p class="step-down">YOUR INFO</p>
+            <p class="step-down">SELECT A PLAN</p>
           </div>
 
         </div>
@@ -273,7 +285,18 @@ function prox4 (){
           </div>
           <div class="text-step">
             <p class="step-out">Step 3</p>
-            <p class="step-down">YOUR INFO</p>
+            <p class="step-down">ADD-ONS</p>
+          </div>
+
+        </div>
+
+        <div class="step1">
+          <div class="number"><i v-show="number4" class="bi bi-4-circle-fill"></i> <i v-show="number4Next" class="bi bi-4-circle"></i>
+
+          </div>
+          <div class="text-step">
+            <p class="step-out">Step 4</p>
+            <p class="step-down">SUMMARY</p>
           </div>
 
         </div>
@@ -478,6 +501,14 @@ function prox4 (){
       </section>
 
 
+
+      <section v-show="mostrarFinal" class="maim">
+        <h2 class="title">Thank you for joining us! 🎉</h2>
+        <p class="parag">Your subscription has been completed successfully. You can now enjoy all the benefits of your plan and explore everything we’ve prepared for you.</p>
+        <img class="boy" src="./assets/images/MENINO.png" alt="">
+      </section>
+
+
       <button v-show="bot2" type="submit" @click="prox" class="submit-step">Next Step</button>
 
 
@@ -486,12 +517,18 @@ function prox4 (){
       <button @click="select" v-show="disab"  class="submit-step" > Select a plan</button>
       <button v-show="bot4" type="submit" @click="prox4" class="submit-step">Next Step</button>
       <button v-show="bot5" type="submit" @click="confirm" class="submit-step">Confirm</button>
+
+
+
+
+      
       
       
 
 
 
     </div>
+
     
 
 
@@ -696,7 +733,7 @@ input{
 }
 
 
-.bi-1-circle-fill, .bi-1-circle, .bi-2-circle-fill, .bi-2-circle, .bi-3-circle-fill, .bi-3-circle{
+.bi-1-circle-fill, .bi-1-circle, .bi-2-circle-fill, .bi-2-circle, .bi-3-circle-fill, .bi-3-circle, .bi-4-circle-fill, .bi-4-circle{
   color: hsl(218, 100%, 97%);
   font-size: 30px;
 }
@@ -754,6 +791,8 @@ input{
       display: block;
       width: 700px;
       height: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .section-step{
       width: 100%;
@@ -776,6 +815,9 @@ input{
     input, form{
       width: 70%;
     }
+    .submit-step{
+    margin: 10px;
+  }
   }
 @media (max-width:800px){
 
@@ -785,14 +827,44 @@ input{
     width: 80%;
     margin-left:auto;
     margin-right: auto;
+    height: 700px;
     
   }
   .container-confirm{
     width: 90%;
   }
   .main{
-    background-color: antiquewhite;
+
     margin: 5px;
+    
+  }
+  h2{
+    font-size: 30px;
+  }
+  .parag{
+    font-size: 15px;
+    margin: 10px;
+  }
+  .boy{
+    width: 600px;
+  }
+  .item-service{
+    width: 90%;
+    
+  }
+  .boy{
+    width: 400px;
+  }
+  
+}
+
+
+@media (max-width:700px){
+  .container-main{
+    width: 100%;
+  }
+  .item{
+    width: 100px;
   }
 }
 
